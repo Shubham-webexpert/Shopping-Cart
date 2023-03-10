@@ -1,0 +1,32 @@
+.toolbar{
+    background-color: #2F3C7E;
+    color: #FBEAEB;
+    width: auto;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+a{
+    color: #FBEAEB;
+    text-decoration: none;
+}
+
+.logo{
+    color: #ff8c00;
+    font-size: 25px;
+}
+
+.searchContainer{
+    width: 80%;
+}
+
+.searchbar{
+    width: 80%;
+}
+
+.cartIcon{
+    color: #FBEAEB;
+}
