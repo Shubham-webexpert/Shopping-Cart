@@ -1,10 +1,9 @@
 .toolbar{
     background-color: #2F3C7E;
     color: #FBEAEB;
-    width: auto;
     padding: 15px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
 }
@@ -24,9 +23,30 @@ a{
 }
 
 .searchbar{
-    width: 80%;
+    width: 95%;
 }
 
 .cartIcon{
     color: #FBEAEB;
+}
+
+
+@media screen and (min-width:320px) and (max-width:780px){
+    .searchContainer{
+        margin-left: 10px;
+    }
+    .searchbar{
+        width: 95%;
+        
+    }
+}
+
+@media screen and (max-width:320px){
+    .searchContainer{
+        margin-left: 10px;
+    }
+    .searchbar{
+        width: 100%;
+        
+    }
 }

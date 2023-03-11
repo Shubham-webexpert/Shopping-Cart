@@ -23,14 +23,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Navbar = () => {
   const{cartState:{cart}}=useContext(ApiContext);
   console.log(cart);
-  // const[cartLength,setCartLength]=useState(0);
+  const[cartLength,setCartLength]=useState();
 
-  // useEffect(()=>{
-  //   setCartLength(cart.reduce((acc,curr)=>acc+curr.quantity,0))
-  // },[cart])
+  useEffect(()=>{
+    setCartLength(cart.reduce((acc, currVal) => acc + currVal.qty, 0));
+  },[cart])
   return (
     <>
-      <Toolbar className="toolbar">
+      <Toolbar className="toolbar" style={{position:"fixed",width:"100%",zIndex:1}}>
         <Link to="/">
           <Box>
             <h3 className="logo">Shopsy</h3>
@@ -43,7 +43,7 @@ const Navbar = () => {
         <Box>
           <Link to="/cart">
             <IconButton aria-label="cart" >
-              <StyledBadge badgeContent={cart.length} color="secondary">
+              <StyledBadge badgeContent={cartLength} color="secondary">
                 <ShoppingCartIcon className="cartIcon"/>
               </StyledBadge>
             </IconButton>

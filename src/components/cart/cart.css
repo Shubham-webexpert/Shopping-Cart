@@ -1,8 +1,26 @@
+.cartNav{
+    align-items: center;
+    /* text-align: center; */
+    display: flex;
+    justify-content: space-between;
+    background-color: #2F3C7E;
+}
+
+.cartItemIcon{
+    color:"lig",
+}
+
+.cartnavtext{
+  color: #FBEAEB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .cartContainer{
-    width: 60%;
+    
     align-items: center;
     text-align: center;
-    margin: auto;
+    
 }
 
 
@@ -37,12 +55,21 @@
     height:auto;
     background-color: lightblue;
     color:coral;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
-    margin: auto;
+    margin:auto;
+    padding-top: 5px;
+
     border-radius: 12px;
 }
 
-.emptycart img{
-    background:transparent;
+.grandTotal{
+    text-align: center;
+    background:lightblue;
+    margin: auto;
+}
+
+.homebtn{
+    text-align: center;
+    padding-bottom: 20px;
 }
