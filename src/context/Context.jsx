@@ -32,7 +32,8 @@ const Context = ({children}) => {
 
     const [cartState,cartDispatch]=useReducer(cartReducer,{
         products:state.post,
-        cart:[]
+        cart:[],
+        searchQuery:""
     })
 
 

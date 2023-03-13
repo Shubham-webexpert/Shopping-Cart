@@ -2,7 +2,7 @@ import {
   Box,
   Button,
   ListItemButton,
-  Paper,
+  Grid,
   Rating,
   TextField,
 } from "@mui/material";
@@ -14,14 +14,12 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
 import { Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Badge } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -30,7 +28,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     border: `2px solid ${theme.palette.background.paper}`,
     padding: "0 4px",
   },
-}))
+}));
 
 const Cart = () => {
   const {
@@ -59,20 +57,18 @@ const Cart = () => {
               </Box>
             </Link>
             <Box>
-          <Link to="/cart">
-            <IconButton aria-label="cart" >
-              <StyledBadge badgeContent={cartLength} color="secondary">
-                <ShoppingCartIcon className="cartIcon"/>
-              </StyledBadge>
-            </IconButton>
-          </Link>
-        </Box>
+              <Link to="/cart">
+                <IconButton aria-label="cart">
+                  <StyledBadge badgeContent={cartLength} color="secondary">
+                    <ShoppingCartIcon sx={{ color: "#FCF6F5FF", float: "r" }} />
+                  </StyledBadge>
+                </IconButton>
+              </Link>
+            </Box>
           </div>
           <div className="cartContainer">
-            
             {cart.map((curElem) => {
               return (
-
                 <List
                   sx={{
                     width: "100%",
@@ -80,81 +76,92 @@ const Cart = () => {
                     bgcolor: "background.paper",
                   }}
                   key={curElem.id}
-                  className="cartSection"
                 >
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
+                  <div className="cartSection">
+                    <ListItem className="cartList">
+                      <ListItemAvatar sx={{marginRight:1}}> 
                         <img
                           src={curElem.image}
-                          alt=""
-                          className="cartItemImg"
+                          alt={curElem.title}
+                          width="100px" 
                         />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary={curElem.title} />
-                    <ListItemText secondary={`$${curElem.price}`} />
-                    <ListItemText
-                      secondary={
-                        <Rating
-                          readOnly
-                          value={curElem.rating.rate}
-                          style={{ fontSize: 15 }}
+                      </ListItemAvatar>
+                      <div className="listdata">
+                        <ListItemText
+                          primary={curElem.title}
+                          sx={{
+                            disply: "flex",
+                            flexWrap: "wrap",
+                            maxWidth: 300,
+                          }}
                         />
-                      }
-                    />
-                    <ListItemButton
-                      style={{ width: 50 }}
-                      onClick={() => {
-                        cartDispatch({
-                          type: "CHANGE_CART_QTY",
-                          payload: {
-                            id: curElem.id,
-                            qty: curElem.qty - 1,
-                          },
-                        });
-                      }}
-                    >
-                      -
-                    </ListItemButton>
-                    <TextField
-                      disabled={curElem.qty > 20}
-                      value={curElem.qty}
-                      onChange={(e) => {
-                        cartDispatch({
-                          type: "CHANGE_CART_QTY",
-                          payload: {
-                            id: curElem.id,
-                            qty: e.target.value,
-                          },
-                        });
-                      }}
-                      className="cartQty"
-                    />
-                    <ListItemButton
-                      onClick={() => {
-                        cartDispatch({
-                          type: "CHANGE_CART_QTY",
-                          payload: {
-                            id: curElem.id,
-                            qty: curElem.qty + 1,
-                          },
-                        });
-                      }}
-                    >
-                      +
-                    </ListItemButton>
-                    <ListItemButton
-                      onClick={() => {
-                        cartDispatch({
-                          type: "REMOVE_FROM_CART",
-                          payload: curElem,
-                        });
-                      }}
-                    >
-                      <DeleteIcon style={{ color: "red" }} />
-                    </ListItemButton>
-                  </ListItem>
+                        <ListItemText secondary={`$${curElem.price}`} />
+                        <ListItemText
+                          secondary={
+                            <Rating
+                              readOnly
+                              value={curElem.rating.rate}
+                              style={{ fontSize: 15 }}
+                            />
+                          }
+                        />
+                        <div className="listInput">
+                        <ListItemButton
+                          sx={{ width: 30 }}
+                          onClick={() => {
+                            cartDispatch({
+                              type: "CHANGE_CART_QTY",
+                              payload: {
+                                id: curElem.id,
+                                qty: curElem.qty - 1,
+                              },
+                            });
+                          }}
+                        >
+                          -
+                        </ListItemButton>
+                        <TextField
+                          disabled={curElem.qty > 20}
+                          value={curElem.qty}
+                          onChange={(e) => {
+                            cartDispatch({
+                              type: "CHANGE_CART_QTY",
+                              payload: {
+                                id: curElem.id,
+                                qty: e.target.value,
+                              },
+                            });
+                          }}
+                          className="cartQty"
+                        />
+                        <ListItemButton
+                          sx={{ width: 40 }}
+                          onClick={() => {
+                            cartDispatch({
+                              type: "CHANGE_CART_QTY",
+                              payload: {
+                                id: curElem.id,
+                                qty: curElem.qty + 1,
+                              },
+                            });
+                          }}
+                        >
+                          +
+                        </ListItemButton>
+                        </div>
+                        <ListItemButton
+                          onClick={() => {
+                            cartDispatch({
+                              type: "REMOVE_FROM_CART",
+                              payload: curElem,
+                            });
+                          }}
+                        >
+                          <DeleteIcon style={{ color: "red" }} />
+                        </ListItemButton>
+                      </div>
+                    </ListItem>
+                  </div>
                 </List>
               );
             })}
@@ -168,14 +175,11 @@ const Cart = () => {
       ) : (
         <div className="emptycart">
           <h3>Your cart is Empty</h3>
-          <img
-            src="public/assets/shopping-cart-icon-29082.png"
-            style={{ width: "auto", maxHeight: 450 }}
-          />
+          <img src="public/assets/shopping-cart-icon-29082.png" />
           <div className="homebtn">
             <Link to="/">
-              <Button variant="contained">
-                <ArrowBackIcon /> Continue Shopping
+              <Button variant="contained" sx={{ fontSize: 12 }}>
+                <ArrowBackIcon style={{ fontSize: 20 }} /> Continue Shopping
               </Button>
             </Link>
           </div>
